@@ -15,18 +15,18 @@ from datetime import timedelta
 
 def main():
     chat = getChat()
-    #chat = spawnDF('chat1.json')
-    #print(getNumberOfMessages(chat))
-    # print(getNumberOfResponses(chat))
-    # print(getTotalResponseTimes(chat))
-    # print(getAverageResponseTimes(chat))
-    # print(getNumberOfConversationsStarted(chat))
-    # print(getNumberOfWords(chat))
-    # print(getWords(chat))
+    # chat = spawnDF('chat1.json')
+    print(getNumberOfMessages(chat))
+    print(getNumberOfResponses(chat))
+    print(getTotalResponseTimes(chat))
+    print(getAverageResponseTimes(chat))
+    print(getNumberOfConversationsStarted(chat))
+    print(getNumberOfWords(chat))
+    print(getWords(chat))
     print(getCapsLockRatio(chat))
-    # print(getUserSentiment(chat))
-    # print(userKeyWords(chat))
-    # print(getConversationSentiment(chat))
+    print(getUserSentiment(chat))
+    print(userKeyWords(chat))
+    print(getConversationSentiment(chat))
 
 # -------------------------------------- Helper Methods --------------------------------------
 
@@ -142,16 +142,13 @@ def getWords(chat):
 def getCapsLockRatio(chat):
     capsRatio = dict()
     allWords = getWords(chat)
-    print(getWords())
+    
     for user in allWords.keys():
         capsRatio[user] = 0
         words = allWords[user]# split the message into an array of words
         for word in words:
             if isCapsLock(word) and len(word) > 1:
-                capsRatio[user] =+ 1
-                print(capsRatio[user])
-                print(user)
-    return capsRatio
+                capsRatio[user] += 1
 
 def isCapsLock(word):
     for char in word:
@@ -266,7 +263,7 @@ def spawnDF(filename):
                     'message': contents})
     return df
 
-# -------------------------------------- Main Analyzer Methods --------------------------------------
+    # -------------------------------------- Main Analyzer Methods --------------------------------------
 
 # Create a function/equation that gives scores 0-100
     # think about how to give weight to all of the metrics
