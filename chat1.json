@@ -1,0 +1,68 @@
+{
+    "participants": [
+      {
+        "name": "Alvin Li"
+      },
+      {
+        "name": "Young Li"
+      }
+    ],
+    "messages": [
+      {
+        "sender_name": "Young Li",
+        "timestamp_ms": 1582183909773,
+        "sticker": {
+          "uri": "messages/stickers_used/39178562_1505197616293642_5411344281094848512_n_369239263222822.png"
+        },
+        "type": "Generic"
+      },
+      {
+        "sender_name": "Alvin Li",
+        "timestamp_ms": 1582183393213,
+        "content": "Thanks",
+        "type": "Generic"
+      },
+      {
+        "sender_name": "Alvin Li",
+        "timestamp_ms": 1582183385414,
+        "sticker": {
+          "uri": "messages/stickers_used/39178562_1505197616293642_5411344281094848512_n_369239263222822.png"
+        },
+        "type": "Generic"
+      },
+      {
+        "sender_name": "Young Li",
+        "timestamp_ms": 1582180544075,
+        "content": "To tell you to call her back",
+        "type": "Generic"
+      },
+      {
+        "sender_name": "Young Li",
+        "timestamp_ms": 1582180539282,
+        "content": "Your mom called me",
+        "type": "Generic"
+      },
+      {
+        "sender_name": "Young Li",
+        "timestamp_ms": 1582180534495,
+        "content": "Hey man",
+        "type": "Generic"
+      },
+      {
+        "sender_name": "Alvin Li",
+        "timestamp_ms": 1581037388726,
+        "content": "to doordash w me",
+        "type": "Generic"
+      },
+      {
+        "sender_name": "Alvin Li",
+        "timestamp_ms": 1581037385685,
+        "content": "do you want",
+        "type": "Generic"
+      }
+    ],
+    "title": "Alvin Li",
+    "is_still_participant": true,
+    "thread_type": "Regular",
+    "thread_path": "inbox/AlvinLi_IXb_sv6tbA"
+  }
