@@ -1,68 +1,37 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![Maintainability](https://api.codeclimate.com/v1/badges/2c00592733bb3efc9a3d/maintainability)](https://codeclimate.com/github/matt-sm/create-react-flask/maintainability)
 
-## Available Scripts
+# create-react-app + flask
+If you really want to create a client react app with session-based authentication.
 
-In the project directory, you can run:
+It does seem counter-intuative to use a stateful server with a stateless Single Page App, but there may be situations (eg. required to integrate with an existing session-based Api) where you can't use tokens.  
 
-### `yarn start`
+Notes:
+* for cookies to work, the Api must be hosted on the same domain as the site. On localhost, Api calls are be proxied to `localhost:5000`.
+* with the source of truth being the server, when the app first loads it tries to ping an endpoint to determine if the cookie is still valid, and set the correct `lsLoggedIn` value in state. The front end does not track cookie expiry, etc.
+* if `isLoggedIn: true` and the cookie does expire, the server will return a `401` and the app redux state will change to `isLoggedIn: false`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+React structure inspired by this [container pattern](http://lucasmreis.github.io/blog/simple-react-patterns/).
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Auth managed via [flask-login](https://github.com/maxcountryman/flask-login).
 
-### `yarn test`
+Redux actions/reducers based on [login-flow](https://github.com/mxstbr/login-flow).
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Start the frontend:
+```
+cd client
+nvm use
+npm install
+npm start
+```
+## Start the backend:
+```
+virtualenv venv
+source venv/bin/activate
+pip install -r requirements.txt
+python run.py
+```
 
-### `yarn build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## Run prettier:
+```
+npm run prettier
+```
