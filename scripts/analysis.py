@@ -18,6 +18,7 @@ def main():
     chat = spawnDF('chat1.json')
     ftype = "json"
     #ftype = "csv"
+<<<<<<< HEAD
     print(getNumberOfMessages(chat))
     print(getNumberOfResponses(chat))
     #print(getTotalResponseTimes(chat, ftype))
@@ -29,6 +30,32 @@ def main():
     print(getUserSentiment(chat))
     print(userKeyWords(chat))
     print(getConversationSentiment(chat))
+=======
+    #print(getNumberOfMessages(chat))
+    # print(getNumberOfResponses(chat))
+    print(getTotalResponseTimes(chat, ftype))
+    # print(getAverageResponseTimes(chat, ftype))
+    # print(getNumberOfConversationsStarted(chat))
+    # print(getNumberOfWords(chat))
+    # print(getWords(chat))
+    # print(getCapsLockRatio(chat))
+    # print(getUserSentiment(chat))
+    # print(userKeyWords(chat))
+    # print(getConversationSentiment(chat))
+>>>>>>> 7ff7d2c51c4943acb1342b7ac11aba43201ed521
+
+'''
+
+
+
+
+
+
+
+
+
+
+'''
 
 # -------------------------------------- Helper Methods --------------------------------------
 
