@@ -14,19 +14,34 @@ import datetime
 from datetime import timedelta
 
 def main():
-    chat = getChat()
-    #chat = spawnDF('chat1.json')
+    #chat = getChat()
+    chat = spawnDF('chat1.json')
+    ftype = "json"
+    #ftype = "csv"
     #print(getNumberOfMessages(chat))
     # print(getNumberOfResponses(chat))
-    # print(getTotalResponseTimes(chat))
-    # print(getAverageResponseTimes(chat))
+    print(getTotalResponseTimes(chat, ftype))
+    # print(getAverageResponseTimes(chat, ftype))
     # print(getNumberOfConversationsStarted(chat))
     # print(getNumberOfWords(chat))
     # print(getWords(chat))
-    print(getCapsLockRatio(chat))
+    # print(getCapsLockRatio(chat))
     # print(getUserSentiment(chat))
     # print(userKeyWords(chat))
     # print(getConversationSentiment(chat))
+
+'''
+
+
+
+
+
+
+
+
+
+
+'''
 
 # -------------------------------------- Helper Methods --------------------------------------
 
@@ -63,10 +78,24 @@ def getNumberOfResponses(chat):
         prevUser = user
     return messageCount
 
-def getTotalResponseTimes(chat):
+def getTotalResponseTimes(chat,ftype):
     '''
     Returns a mapping of users to the total response times
     '''
+    if(ftype == "json"):
+        totalResponseTimes = dict()
+        prevUser = None
+        
+        for index in chat.index:
+            user = chat['user'][index]
+            if user not in totalResponseTimes.keys():
+                totalResponseTimes[user] = 0
+            if user is not prevUser and prevUser is not None:
+                totalResponseTimes[user] += chat['time'][index] - chat['time'][index-1]
+            prevUser = user
+        #print(totalResponseTimes)
+        return totalResponseTimes
+
     totalResponseTimes = dict()
     prevUser = None
     
@@ -80,11 +109,25 @@ def getTotalResponseTimes(chat):
     #print(totalResponseTimes)
     return totalResponseTimes
 
-def getAverageResponseTimes(chat):
+def getAverageResponseTimes(chat, ftype):
     '''
     Returns a mapping of users to their average reponse times to all other users
     *Includes responses to self
     '''
+    if(ftype == "json"):
+        responseTimes = dict()
+        changed_chat = chat[:]
+        
+        changed_chat['time'] = changed_chat['time'].diff()
+        numResponses = getNumberOfResponses(chat)
+        totalResponseTimes = getTotalResponseTimes(chat)
+        users = chat.user.unique()
+        for user in users:
+            user_chat = changed_chat[changed_chat['user'] == user]  # filters to only show messages sent by user
+            #print(getTotalResponseTimes(chat)[user])
+            responseTimes[user] = totalResponseTimes[user] / numResponses[user]  # sums all response times and divides by total messages sent by user
+        return responseTimes
+
     responseTimes = dict()
     changed_chat = chat[:]
     
@@ -142,15 +185,12 @@ def getWords(chat):
 def getCapsLockRatio(chat):
     capsRatio = dict()
     allWords = getWords(chat)
-    print(getWords())
     for user in allWords.keys():
         capsRatio[user] = 0
         words = allWords[user]# split the message into an array of words
         for word in words:
             if isCapsLock(word) and len(word) > 1:
-                capsRatio[user] =+ 1
-                print(capsRatio[user])
-                print(user)
+                capsRatio[user] += 1
     return capsRatio
 
 def isCapsLock(word):
