@@ -1,2 +1,3 @@
 client/venv
 client/env
+client/instance/scripts/__pycache__/
