@@ -19,17 +19,6 @@ import seaborn as sns
 
 
 def main():
-<<<<<<< HEAD
-    #chat = getChat()
-    chat = spawnDF('chat1.json')
-    ftype = "json"
-    #ftype = "csv"
-<<<<<<< HEAD
-    print(getNumberOfMessages(chat))
-    print(getNumberOfResponses(chat))
-    #print(getTotalResponseTimes(chat, ftype))
-    #print(getAverageResponseTimes(chat, ftype))
-=======
     chat = getChat()
     # chat = spawnDF('chat1.json')
 
@@ -64,7 +53,6 @@ def runAll():
     print(getNumberOfResponses(chat))
     print(getTotalResponseTimes(chat))
     print(getAverageResponseTimes(chat))
->>>>>>> MattsFix
     print(getNumberOfConversationsStarted(chat))
     print(getNumberOfWords(chat))
     print(getWords(chat))
@@ -72,35 +60,7 @@ def runAll():
     print(getUserSentiment(chat))
     print(userKeyWords(chat))
     print(getConversationSentiment(chat))
-<<<<<<< HEAD
-=======
-    #print(getNumberOfMessages(chat))
-    # print(getNumberOfResponses(chat))
-    print(getTotalResponseTimes(chat, ftype))
-    # print(getAverageResponseTimes(chat, ftype))
-    # print(getNumberOfConversationsStarted(chat))
-    # print(getNumberOfWords(chat))
-    # print(getWords(chat))
-    # print(getCapsLockRatio(chat))
-    # print(getUserSentiment(chat))
-    # print(userKeyWords(chat))
-    # print(getConversationSentiment(chat))
->>>>>>> 7ff7d2c51c4943acb1342b7ac11aba43201ed521
 
-'''
-
-
-
-
-
-
-
-
-
-
-'''
-=======
->>>>>>> MattsFix
 
 # -------------------------------------- Helper Methods --------------------------------------
 
@@ -137,24 +97,10 @@ def getNumberOfResponses(chat):
         prevUser = user
     return messageCount
 
-def getTotalResponseTimes(chat,ftype):
+def getTotalResponseTimes(chat):
     '''
     Returns a mapping of users to the total response times
     '''
-    if(ftype == "json"):
-        totalResponseTimes = dict()
-        prevUser = None
-        
-        for index in chat.index:
-            user = chat['user'][index]
-            if user not in totalResponseTimes.keys():
-                totalResponseTimes[user] = 0
-            if user is not prevUser and prevUser is not None:
-                totalResponseTimes[user] += chat['time'][index] - chat['time'][index-1]
-            prevUser = user
-        #print(totalResponseTimes)
-        return totalResponseTimes
-
     totalResponseTimes = dict()
     prevUser = None
     
@@ -168,25 +114,11 @@ def getTotalResponseTimes(chat,ftype):
     #print(totalResponseTimes)
     return totalResponseTimes
 
-def getAverageResponseTimes(chat, ftype):
+def getAverageResponseTimes(chat):
     '''
     Returns a mapping of users to their average reponse times to all other users
     *Includes responses to self
     '''
-    if(ftype == "json"):
-        responseTimes = dict()
-        changed_chat = chat[:]
-        
-        changed_chat['time'] = changed_chat['time'].diff()
-        numResponses = getNumberOfResponses(chat)
-        totalResponseTimes = getTotalResponseTimes(chat)
-        users = chat.user.unique()
-        for user in users:
-            user_chat = changed_chat[changed_chat['user'] == user]  # filters to only show messages sent by user
-            #print(getTotalResponseTimes(chat)[user])
-            responseTimes[user] = totalResponseTimes[user] / numResponses[user]  # sums all response times and divides by total messages sent by user
-        return responseTimes
-
     responseTimes = dict()
     changed_chat = chat[:]
     changed_chat['time'] = changed_chat['time'].diff()
@@ -253,20 +185,13 @@ def getWords(chat):
 def getCapsLockRatio(chat):
     capsRatio = dict()
     allWords = getWords(chat)
-<<<<<<< HEAD
-=======
     
->>>>>>> MattsFix
     for user in allWords.keys():
         capsRatio[user] = 0
         words = allWords[user]# split the message into an array of words
         for word in words:
             if isCapsLock(word) and len(word) > 1:
                 capsRatio[user] += 1
-<<<<<<< HEAD
-    return capsRatio
-=======
->>>>>>> MattsFix
 
 def isCapsLock(word):
     for char in word:
@@ -382,6 +307,184 @@ def plotWordsOverTime(chat):
     plt.ylabel("Words per Message")
     plt.title("Words per Message Over Time")
     plt.savefig("Visualizations/Words per Message Over Time.jpeg")
+
+def plotSentimentOverTime(chat):
+    '''
+    Sentiment over time
+    '''
+    changed_chat = getMessageSentiment(chat)
+    users = chat.user.unique()
+    sns.set(style="whitegrid")
+    for user in users:
+       user_chat = changed_chat[changed_chat['user'] == user]
+       plt.plot(user_chat['sentiment'], label=user)
+    plt.legend(loc='lower left')
+    plt.xlabel("Time")
+    plt.ylabel("Sentiment Score (Scale -1 to 1)")
+    plt.title("Sentiment per Person over Time")
+    plt.savefig("Visualizations/Sentiment per Person over Time.jpeg")
+  
+# -------------------------------- Converts chatlog to program-readable format --------------------------------------
+
+def spawnDF(filename):
+    '''
+    Given a .json file of a facebook messenger chatlog this function will return a pandas 
+    dataframe with 3 columns, user, datetime 
+    '''
+    sender_name = []
+    timestamp_ms = []
+    contents = []
+    mtype = []
+    with open(filename, "r") as a_file:
+
+        for line in a_file:
+
+            stripped_line = line.strip()
+            name = stripped_line.split("sender_name")
+            if(stripped_line.find('sender_name') > -1):
+                i = stripped_line.split('sender_name')
+                #hard code for now i is an array of size 2, with the sender_name in i[1]
+                name = i[1].split(": ")
+                #name splits into array of size 2, 
+                #name[1] = "NAME", So we use [1:-2]
+                user = name[1][1:-2]
+                sender_name.append(user)
+                #print(name[1][1:-2]) 
+                
+            if(stripped_line.find('timestamp_ms') > -1):
+                i = stripped_line.split('timestamp_ms')
+                stamp = i[1].split(": ")
+                #stamp[1] returns the ms + a comma
+                ts = stamp[1][:-1]
+                timestamp_ms.append(ts)
+                #print(stamp[1][:-1])
+                
+            if(stripped_line.find('content') > -1):
+                i = stripped_line.split('content')
+                content = i[1].split(": ")
+                c = content[1][:-1]
+                contents.append(c)
+                #print(c)
+                #print(contents)
+            
+            if(stripped_line.find('type') > -1):
+                mtype.append("generic")
+                #print(stripped_line)
+            
+            if(stripped_line.find('\"sticker\"') > -1):
+                sticker = "sticker"
+                contents.append(sticker)
+                #print(stripped_line)    
+
+            if(stripped_line.find('\"photos\"') > -1):
+                contents.append('photos')
+                #print(stripped_line)            
+                
+            #print(stripped_line)
+
+    df = pd.DataFrame({'user': sender_name,
+                    'datetime': timestamp_ms,
+                    'message': contents})
+    return df
+
+# -------------------------------------- Main Analyzer Methods --------------------------------------
+
+# Create a function/equation that gives scores 0-100
+    # think about how to give weight to all of the metrics
+
+if __name__ == '__main__':
+    main()
+
+# --------------------------------------- Helper methods -----------------------------------    plt.savefig("Visualizations/Words per Message Over Time.jpeg")
+
+def plotSentimentOverTime(chat):
+    '''
+    Sentiment over time
+    '''
+    changed_chat = getMessageSentiment(chat)
+    users = chat.user.unique()
+    sns.set(style="whitegrid")
+    for user in users:
+       user_chat = changed_chat[changed_chat['user'] == user]
+       plt.plot(user_chat['sentiment'], label=user)
+    plt.legend(loc='lower left')
+    plt.xlabel("Time")
+    plt.ylabel("Sentiment Score (Scale -1 to 1)")
+    plt.title("Sentiment per Person over Time")
+    plt.savefig("Visualizations/Sentiment per Person over Time.jpeg")
+  
+# -------------------------------- Converts chatlog to program-readable format --------------------------------------
+
+def spawnDF(filename):
+    '''
+    Given a .json file of a facebook messenger chatlog this function will return a pandas 
+    dataframe with 3 columns, user, datetime 
+    '''
+    sender_name = []
+    timestamp_ms = []
+    contents = []
+    mtype = []
+    with open(filename, "r") as a_file:
+
+        for line in a_file:
+
+            stripped_line = line.strip()
+            name = stripped_line.split("sender_name")
+            if(stripped_line.find('sender_name') > -1):
+                i = stripped_line.split('sender_name')
+                #hard code for now i is an array of size 2, with the sender_name in i[1]
+                name = i[1].split(": ")
+                #name splits into array of size 2, 
+                #name[1] = "NAME", So we use [1:-2]
+                user = name[1][1:-2]
+                sender_name.append(user)
+                #print(name[1][1:-2]) 
+                
+            if(stripped_line.find('timestamp_ms') > -1):
+                i = stripped_line.split('timestamp_ms')
+                stamp = i[1].split(": ")
+                #stamp[1] returns the ms + a comma
+                ts = stamp[1][:-1]
+                timestamp_ms.append(ts)
+                #print(stamp[1][:-1])
+                
+            if(stripped_line.find('content') > -1):
+                i = stripped_line.split('content')
+                content = i[1].split(": ")
+                c = content[1][:-1]
+                contents.append(c)
+                #print(c)
+                #print(contents)
+            
+            if(stripped_line.find('type') > -1):
+                mtype.append("generic")
+                #print(stripped_line)
+            
+            if(stripped_line.find('\"sticker\"') > -1):
+                sticker = "sticker"
+                contents.append(sticker)
+                #print(stripped_line)    
+
+            if(stripped_line.find('\"photos\"') > -1):
+                contents.append('photos')
+                #print(stripped_line)            
+                
+            #print(stripped_line)
+
+    df = pd.DataFrame({'user': sender_name,
+                    'datetime': timestamp_ms,
+                    'message': contents})
+    return df
+
+# -------------------------------------- Main Analyzer Methods --------------------------------------
+
+# Create a function/equation that gives scores 0-100
+    # think about how to give weight to all of the metrics
+
+if __name__ == '__main__':
+    main()
+
+# --------------------------------------- Helper methods -----------------------------------    plt.savefig("Visualizations/Words per Message Over Time.jpeg")
 
 def plotSentimentOverTime(chat):
     '''
