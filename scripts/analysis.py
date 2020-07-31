@@ -18,10 +18,12 @@ matplotlib.use('MacOSX')
 import seaborn as sns
 
 
-def main(filename, filetype):
+def main():
+    filename = 'bitchy_conversation.json'
+    filetype = 'json'
     # filename = 'mattchatlog.csv'
     # filetype = 'csv'
-    return run(filename, filetype)
+    run(filename, filetype)
     
 def createPlots(chat):
     #chat = getChat()
@@ -67,7 +69,7 @@ def run(filename, filetype):
     chatlog = getChat(filename, filetype)
 
     # create all visualizations
-    # createPlots(chatlog)
+    createPlots(chatlog)
 
     # fetch statistics
     return fetchStatistics(chatlog)
@@ -175,9 +177,6 @@ def getNumberOfConversationsStarted(chat):
         if user not in conversationsStarted.keys():
             conversationsStarted[user] = 0
         conversationsStarted[user] += 1
-    for user in chat.user.unique():
-        if user not in conversationsStarted.keys():
-            conversationsStarted[user] = 0
     return conversationsStarted
 
 def getNumberOfWords(chat):
@@ -265,11 +264,11 @@ def userKeyWords(chat):
     '''
     Function to return key words for each person.
     '''
-    userKeyWords = dict()
+    userKeyWords= dict()
     words = getWords(chat)
     for user in words.keys():
         values = keywords(text=preprocess(' '.join(words[user])),split='\n')
-        userKeyWords[user] = values[:10]
+        userKeyWords = values[:10]
     try:
         return userKeyWords
     except:
@@ -294,7 +293,7 @@ def plotConvosStarted(convoStarted):
     df = pd.DataFrame(list(zip(names, number)), columns=['Person', 'Number of Conversations Started'])
     sns.set(style="whitegrid")
     sns.barplot(x="Person", y="Number of Conversations Started", data=df).set_title("Number of Conversations Started per Person")
-    # plt.savefig("Number of Conversation Started per Person.jpeg")
+    plt.savefig("Number of Conversation Started per Person.jpeg")
     plt.savefig("Visualizations/Conversations Started per Person.jpeg")
 
 def plotResponseTimeOverTime(chat):
@@ -426,7 +425,7 @@ def spawnDF(filename):
 # Create a function/equation that gives scores 0-100
     # think about how to give weight to all of the metrics
 
-# if __name__ == '__main__':
- #   main()
+if __name__ == '__main__':
+    main()
 
 # --------------------------------------- Helper methods -----------------------------------
