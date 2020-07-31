@@ -1,0 +1,409 @@
+{
+  "participants": [
+    {
+      "name": "Anushka Ladha"
+    },
+    {
+      "name": "Devika Baliga"
+    },
+    {
+      "name": "Mehak Mann"
+    }
+  ],
+  "messages": [
+    {
+      "sender_name": "Anushka Ladha",
+      "timestamp_ms": 1590953716152,
+      "content": "4/0QFmhL69nemmrexPVk6fO9RU2BMz6mxvbRbVE2hb7-4bBSY1hzG-SpQ",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Mehak Mann",
+      "timestamp_ms": 1590951053350,
+      "content": "So are we gonna call?",
+      "reactions": [
+        {
+          "reaction": "\u00f0\u009f\u0091\u008d",
+          "actor": "Anushka Ladha"
+        }
+      ],
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Mehak Mann",
+      "timestamp_ms": 1590950812644,
+      "content": "Oh ok cool",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Devika Baliga",
+      "timestamp_ms": 1590950565706,
+      "content": "okay cool! just making sure that ur up to date",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Anushka Ladha",
+      "timestamp_ms": 1590950555707,
+      "content": "yeah that\u00e2\u0080\u0099s what we\u00e2\u0080\u0099re doing",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Mehak Mann",
+      "timestamp_ms": 1590950539628,
+      "content": "Yeah, I know? That\u00e2\u0080\u0099s what I read",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Devika Baliga",
+      "timestamp_ms": 1590950483474,
+      "content": "yeah it's all in the report",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Mehak Mann",
+      "timestamp_ms": 1590950375495,
+      "content": "And then some ML on preprocessed data",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Mehak Mann",
+      "timestamp_ms": 1590950334653,
+      "content": "Kind of - I think you\u00e2\u0080\u0099re trying to detect the spread of corona using multiple characteristics? So you\u00e2\u0080\u0099ll make a 3D visual for temperature and another for humidity. And you\u00e2\u0080\u0099re also taking social distancing into account (does the strindex do that?)",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Devika Baliga",
+      "timestamp_ms": 1590950104605,
+      "content": "like do u get what we're doing",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Devika Baliga",
+      "timestamp_ms": 1590950094966,
+      "content": "have u read the project yet mehak?",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Mehak Mann",
+      "timestamp_ms": 1590949939772,
+      "content": "Yeah I\u00e2\u0080\u0099m down too",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Devika Baliga",
+      "timestamp_ms": 1590949231875,
+      "content": "im down anushka!",
+      "reactions": [
+        {
+          "reaction": "\u00f0\u009f\u0092\u0097",
+          "actor": "Anushka Ladha"
+        }
+      ],
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Anushka Ladha",
+      "timestamp_ms": 1590949207810,
+      "content": "Are we doing part 2 rn?",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Mehak Mann",
+      "timestamp_ms": 1590777744007,
+      "content": "Cool, I\u00e2\u0080\u0099ll check it out beforehand.",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Anushka Ladha",
+      "timestamp_ms": 1590777718635,
+      "content": "should work out good",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Anushka Ladha",
+      "timestamp_ms": 1590777709076,
+      "content": "yes!! i can do sunday morning as well",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Devika Baliga",
+      "timestamp_ms": 1590777707153,
+      "content": "11 works for me",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Devika Baliga",
+      "timestamp_ms": 1590777697743,
+      "content": "if you haven't already, the doc is updated w the coding plans and u can see her comments on part 1 on gradescope we can talk about it more on the weekend but just so u have some info",
+      "reactions": [
+        {
+          "reaction": "\u00f0\u009f\u0091\u008d",
+          "actor": "Mehak Mann"
+        }
+      ],
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Mehak Mann",
+      "timestamp_ms": 1590777691119,
+      "content": "Ok sweet - what time works for you guys? I was thinking maybe 11 am Sunday?",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Devika Baliga",
+      "timestamp_ms": 1590777645588,
+      "content": "we haven't started coding yet so this weekend is perfect!",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Devika Baliga",
+      "timestamp_ms": 1590777627325,
+      "content": "yeah!!",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Mehak Mann",
+      "timestamp_ms": 1590777459781,
+      "content": "Hey I know you guys are still taking a break from me, but I also want to help out/contribute to the project. Do you guys want to call sometime this weekend to plan out the design/split up the coding?",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Devika Baliga",
+      "timestamp_ms": 1589263680093,
+      "content": "like even if everyone does corona we have our unique spin on it!!:)",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Anushka Ladha",
+      "timestamp_ms": 1589263676929,
+      "content": "i\u00e2\u0080\u0099d be not embarassed to preswnt about it",
+      "reactions": [
+        {
+          "reaction": "\u00f0\u009f\u0091\u008d",
+          "actor": "Devika Baliga"
+        }
+      ],
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Anushka Ladha",
+      "timestamp_ms": 1589263668365,
+      "content": "me too",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Devika Baliga",
+      "timestamp_ms": 1589263663504,
+      "content": "i also think our questions are unique and useful! I'd feel more proud talking about this to potential employers and stuff",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Anushka Ladha",
+      "timestamp_ms": 1589263625528,
+      "content": "like even tho corona may be overdone there is /so/ much data abt it imo. wonderful ground for visializations",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Anushka Ladha",
+      "timestamp_ms": 1589263543295,
+      "content": "hope we can all be flexible",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Anushka Ladha",
+      "timestamp_ms": 1589263538121,
+      "content": "i don\u00e2\u0080\u0099t want to do dating data because i\u00e2\u0080\u0099d rather do a question with implications in the future and more applicable to various fields",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Anushka Ladha",
+      "timestamp_ms": 1589263516474,
+      "content": "yeah! i\u00e2\u0080\u0099m sorry if we hurt ur feelings we both def just meant to make it easier for u with the 4 cs class workload. i\u00e2\u0080\u0099m down to brainstorm more obv",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Devika Baliga",
+      "timestamp_ms": 1589263464701,
+      "content": "totally get where ur coming from mehak,, thought it would be nice to just finish it up and didn't realize u were so interested in the topic\nim open to changing it if it's a topic we all like i don't really like the dating app idea ngl the thing about covid data is it lends itself to the challenge questions reallyyy well w machine learning and the library that displays heat data and stuff!!",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Mehak Mann",
+      "timestamp_ms": 1589262290342,
+      "content": "*and finalizing project ideas",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Mehak Mann",
+      "timestamp_ms": 1589262219790,
+      "content": "I would have loved to contribute more back when y\u00e2\u0080\u0099all were brainstorming project ideas",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Mehak Mann",
+      "timestamp_ms": 1589262192915,
+      "content": "Wait guys tbh - I\u00e2\u0080\u0099m also a bit hurt that you guys got on a call and just decided on the project idea without me? Next time can we discuss together?",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Devika Baliga",
+      "timestamp_ms": 1589262188757,
+      "content": "up to u",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Devika Baliga",
+      "timestamp_ms": 1589262179564,
+      "content": "personally",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Devika Baliga",
+      "timestamp_ms": 1589262179534,
+      "content": "sure but i want to stick w this",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Mehak Mann",
+      "timestamp_ms": 1589262166658,
+      "content": "Okay",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Mehak Mann",
+      "timestamp_ms": 1589262164831,
+      "content": "Oh okay but",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Devika Baliga",
+      "timestamp_ms": 1589262128174,
+      "content": "if u wanna do it u can do it on ur own",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Mehak Mann",
+      "timestamp_ms": 1589262127354,
+      "content": "I feel like everyone will be doing covid you know?",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Anushka Ladha",
+      "timestamp_ms": 1589262124299,
+      "content": "agreed",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Devika Baliga",
+      "timestamp_ms": 1589262118373,
+      "content": "same",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Devika Baliga",
+      "timestamp_ms": 1589262116607,
+      "content": "and it's more like applicable and will be a cool project for projecting trends and will also look more professional",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Anushka Ladha",
+      "timestamp_ms": 1589262114806,
+      "content": "Mehak i\u00e2\u0080\u0099m not interested in the topic",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Mehak Mann",
+      "timestamp_ms": 1589262113398,
+      "content": "We could write it up together?",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Mehak Mann",
+      "timestamp_ms": 1589262102301,
+      "content": "I know but it seems it only took you guys half an hour? If you check out the dataset and it looks interesting ..??",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Devika Baliga",
+      "timestamp_ms": 1589262080679,
+      "content": "yeah plus we're already done w it",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Mehak Mann",
+      "timestamp_ms": 1589262077177,
+      "content": "I thought I was using the right chat! It was an accident lolol",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Anushka Ladha",
+      "timestamp_ms": 1589262070694,
+      "content": "i feel like it\u00e2\u0080\u0099s a better broad question imo? thots",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Anushka Ladha",
+      "timestamp_ms": 1589262060684,
+      "content": "yeah same",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Mehak Mann",
+      "timestamp_ms": 1589262057770,
+      "content": "Yeah I forgot",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Devika Baliga",
+      "timestamp_ms": 1589262056747,
+      "content": "also regarding the dataset i don't wanna change it at this point a lot of thought went into it",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Anushka Ladha",
+      "timestamp_ms": 1589262054712,
+      "content": "also idk i\u00e2\u0080\u0099m not rly that interested in speed dating that\u00e2\u0080\u0099s just me tho",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Anushka Ladha",
+      "timestamp_ms": 1589262044094,
+      "content": "yeah",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Devika Baliga",
+      "timestamp_ms": 1589262039699,
+      "content": "hi mehak!! we can use this chat for 163 maybe instead lol",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Anushka Ladha",
+      "timestamp_ms": 1588196780327,
+      "content": "https://washington.zoom.us/j/98761039857",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Anushka Ladha",
+      "timestamp_ms": 1588024530731,
+      "content": "i felt bad for spamming kav frm last week lmaooo",
+      "reactions": [
+        {
+          "reaction": "\u00f0\u009f\u0098\u0086",
+          "actor": "Mehak Mann"
+        }
+      ],
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Anushka Ladha",
+      "timestamp_ms": 1588024505663,
+      "content": "https://washington.zoom.us/j/95546282897",
+      "type": "Generic"
+    }
+  ],
+  "title": "Anushka Ladha and Devika Baliga",
+  "is_still_participant": true,
+  "thread_type": "RegularGroup",
+  "thread_path": "inbox/AnushkaLadhaandDevikaBaliga_5w39IPuzQQ"
+}
