@@ -1,0 +1,11 @@
+flask
+pandas
+gensim
+numpy
+spacy
+summarization
+nltk
+textblob
+datetime
+matplotlib
+seaborn
