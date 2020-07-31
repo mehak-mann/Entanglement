@@ -43,9 +43,6 @@ def main():
     plotSentimentOverTime(chat)
     plt.close()
 
-    
-    #runAll()
-
 def runAll():
     chat = getChat()
     # chat = spawnDF('chat1.json')
@@ -185,7 +182,6 @@ def getWords(chat):
 def getCapsLockRatio(chat):
     capsRatio = dict()
     allWords = getWords(chat)
-    
     for user in allWords.keys():
         capsRatio[user] = 0
         words = allWords[user]# split the message into an array of words
