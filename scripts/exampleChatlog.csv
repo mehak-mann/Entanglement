@@ -1,0 +1,8 @@
+user,time,message
+PersonA,2020-05-26 22:17:51.00000,"First Message of Conversation"
+PersonB,2020-05-26 22:17:53.00000,"First Response"
+PersonA,2020-05-26 22:17:55.00000,"Third Message"
+PersonA,2020-05-26 22:17:57.00000,"The name of the person who sent"
+PersonC,2020-05-26 22:17:58.00000,"the message goes in the first column"
+PersonA,2020-05-26 22:17:59.00000,"The date and time go in the second"
+PersonB,2020-05-26 22:18:34.00000,"The actual message is in the quotation marks"

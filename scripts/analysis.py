@@ -12,8 +12,14 @@ nlp.max_length = 10000000
 from textblob import TextBlob
 import datetime
 from datetime import timedelta
+import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.use('MacOSX')
+import seaborn as sns
+
 
 def main():
+<<<<<<< HEAD
     #chat = getChat()
     chat = spawnDF('chat1.json')
     ftype = "json"
@@ -23,6 +29,42 @@ def main():
     print(getNumberOfResponses(chat))
     #print(getTotalResponseTimes(chat, ftype))
     #print(getAverageResponseTimes(chat, ftype))
+=======
+    chat = getChat()
+    # chat = spawnDF('chat1.json')
+
+    # ---- plots messages per person bar graph (words) -----
+    messages = getNumberOfMessages(chat)
+    plotMessages(messages)
+    plt.close()
+
+    # ## ----- 
+    convosStarted = getNumberOfConversationsStarted(chat)
+    plotConvosStarted(convosStarted)
+    plt.close()
+
+    # # # # ----
+    plotWordsOverTime(chat)
+    plt.close()
+
+    # # # ---- plots messages per person bar graph (words) -----
+    plotResponseTimeOverTime(chat)
+    plt.close()
+
+    plotSentimentOverTime(chat)
+    plt.close()
+
+    
+    #runAll()
+
+def runAll():
+    chat = getChat()
+    # chat = spawnDF('chat1.json')
+    print(getNumberOfMessages(chat))
+    print(getNumberOfResponses(chat))
+    print(getTotalResponseTimes(chat))
+    print(getAverageResponseTimes(chat))
+>>>>>>> MattsFix
     print(getNumberOfConversationsStarted(chat))
     print(getNumberOfWords(chat))
     print(getWords(chat))
@@ -30,6 +72,7 @@ def main():
     print(getUserSentiment(chat))
     print(userKeyWords(chat))
     print(getConversationSentiment(chat))
+<<<<<<< HEAD
 =======
     #print(getNumberOfMessages(chat))
     # print(getNumberOfResponses(chat))
@@ -56,11 +99,13 @@ def main():
 
 
 '''
+=======
+>>>>>>> MattsFix
 
 # -------------------------------------- Helper Methods --------------------------------------
 
 def getChat():
-    filename = "chatlog.csv"
+    filename = "mattchatlog.csv"
     chat = pd.read_csv(filename)
     chat['time'] = pd.to_datetime(chat['time'], infer_datetime_format=True)
     return chat
@@ -144,7 +189,6 @@ def getAverageResponseTimes(chat, ftype):
 
     responseTimes = dict()
     changed_chat = chat[:]
-    
     changed_chat['time'] = changed_chat['time'].diff()
     numResponses = getNumberOfResponses(chat)
     totalResponseTimes = getTotalResponseTimes(chat)
@@ -155,16 +199,26 @@ def getAverageResponseTimes(chat, ftype):
         responseTimes[user] = totalResponseTimes[user] / numResponses[user]  # sums all response times and divides by total messages sent by user
     return responseTimes
 
+def getResponseTimes(chat):
+    '''
+    Returns a dataframe of message names and response times over time
+    '''
+    responseTimes = dict()
+    changed_chat = chat[:]
+    changed_chat['time'] = changed_chat['time'].diff()
+    return changed_chat
+
 def getNumberOfConversationsStarted(chat):
     '''
     #Returns a mapping of users to the number of conversations they've started,
     #assuming a 12-hour gap signifies the start of a new conversation
     '''
+    new_chat = chat[:]
     conversationsStarted = dict()
-    conversationsStarted[chat['user'][0]] = 1  # automatically setting very first message's user to 1
-    chat = chat[chat['time'].diff() > pd.to_timedelta('12:00:00.00')]
-    for index in chat.index:
-        user = chat['user'][index]
+    conversationsStarted[new_chat['user'][0]] = 1  # automatically setting very first message's user to 1
+    new_chat = new_chat[new_chat['time'].diff() > pd.to_timedelta('12:00:00.00')]
+    for index in new_chat.index:
+        user = new_chat['user'][index]
         if user not in conversationsStarted.keys():
             conversationsStarted[user] = 0
         conversationsStarted[user] += 1
@@ -199,20 +253,26 @@ def getWords(chat):
 def getCapsLockRatio(chat):
     capsRatio = dict()
     allWords = getWords(chat)
+<<<<<<< HEAD
+=======
+    
+>>>>>>> MattsFix
     for user in allWords.keys():
         capsRatio[user] = 0
         words = allWords[user]# split the message into an array of words
         for word in words:
             if isCapsLock(word) and len(word) > 1:
                 capsRatio[user] += 1
+<<<<<<< HEAD
     return capsRatio
+=======
+>>>>>>> MattsFix
 
 def isCapsLock(word):
     for char in word:
         if char.islower():
             return False
     return True
-
 
 def getConversationSentiment(chat):
     '''
@@ -233,6 +293,14 @@ def getUserSentiment(chat):
     for user in words.keys():
         sentiments[user] = TextBlob(' '.join(words[user])).sentiment.polarity
     return sentiments
+
+def getMessageSentiment(chat):
+    '''
+    Function to return sentiment score between -1 to 1 for each message.
+    '''
+    added_sentiment = chat.copy(deep=True)
+    added_sentiment['sentiment'] = added_sentiment['message'].apply(lambda x: TextBlob(x).sentiment.polarity)
+    return added_sentiment
 
 def preprocess(text):
     # Create Doc object
@@ -258,6 +326,80 @@ def userKeyWords(chat):
         return userKeyWords
     except:
         return "no content"
+
+
+# -------------------------------- Visualization methods --------------------------------------
+
+# eventually, try to refactor to show number of messages
+# per day over the last week
+def plotMessages(messages):
+    names = list(messages.keys())
+    number = list(messages.values())
+    df = pd.DataFrame(list(zip(names, number)), columns=['Person', 'Number of Messages'])
+    sns.set(style="whitegrid")
+    sns.barplot(x="Person", y="Number of Messages", data=df).set_title("Number of Messages per Person")
+    plt.savefig("Visualizations/Number of Messages per person.jpeg")
+
+def plotConvosStarted(convoStarted):
+    names = list(convoStarted.keys())
+    number = list(convoStarted.values())
+    df = pd.DataFrame(list(zip(names, number)), columns=['Person', 'Number of Conversations Started'])
+    sns.set(style="whitegrid")
+    sns.barplot(x="Person", y="Number of Conversations Started", data=df).set_title("Number of Conversations Started per Person")
+    plt.savefig("Number of Conversation Started per Person.jpeg")
+    plt.savefig("Visualizations/Conversations Started per Person.jpeg")
+
+def plotResponseTimeOverTime(chat):
+    '''
+    Message words over time
+    '''
+    changed_chat = getResponseTimes(chat)
+    changed_chat['time'] = changed_chat['time'].dt.seconds
+    users = chat.user.unique()
+    sns.set(style="whitegrid")
+    for user in users:
+       user_chat = changed_chat[changed_chat['user'] == user]
+       plt.plot(user_chat['time'], label=user)
+    plt.legend(loc='lower left')
+    plt.xlabel("Time")
+    plt.ylabel("Response Time (s)")
+    plt.title("Response Times per Person (over Time)")
+    plt.savefig("Visualizations/Response Times per Person (over Time).jpeg")
+
+def plotWordsOverTime(chat):
+    '''
+    Message words over time
+    '''
+    changed_chat = chat[:]
+    changed_chat['message'] = changed_chat['message'].apply(lambda x: len(x.split()))
+    users = chat.user.unique()
+    sns.set(style="whitegrid")
+    for user in users:
+       user_chat = changed_chat[changed_chat['user'] == user]
+       plt.plot(user_chat['message'], label=user)
+    plt.legend(loc='lower left')
+    plt.xlabel("Time")
+    plt.ylabel("Words per Message")
+    plt.title("Words per Message Over Time")
+    plt.savefig("Visualizations/Words per Message Over Time.jpeg")
+
+def plotSentimentOverTime(chat):
+    '''
+    Sentiment over time
+    '''
+    changed_chat = getMessageSentiment(chat)
+    users = chat.user.unique()
+    sns.set(style="whitegrid")
+    for user in users:
+       user_chat = changed_chat[changed_chat['user'] == user]
+       plt.plot(user_chat['sentiment'], label=user)
+    plt.legend(loc='lower left')
+    plt.xlabel("Time")
+    plt.ylabel("Sentiment Score (Scale -1 to 1)")
+    plt.title("Sentiment per Person over Time")
+    plt.savefig("Visualizations/Sentiment per Person over Time.jpeg")
+  
+# -------------------------------- Converts chatlog to program-readable format --------------------------------------
 
 def spawnDF(filename):
     '''
@@ -324,9 +466,6 @@ def spawnDF(filename):
 
 # Create a function/equation that gives scores 0-100
     # think about how to give weight to all of the metrics
-
-
-
 
 if __name__ == '__main__':
     main()
