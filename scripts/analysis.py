@@ -46,19 +46,19 @@ def createPlots(chat):
     plt.close()
 
 def fetchStatistics(chat):
-    #chat = getChat()
-    # chat = spawnDF('chat1.json')
-    #print(getNumberOfMessages(chat))
-    #print(getNumberOfResponses(chat))
-    print(getTotalResponseTimes(chat))
-    print(getAverageResponseTimes(chat))
-    print(getNumberOfConversationsStarted(chat))
-    print(getNumberOfWords(chat))
-    print(getWords(chat))
-    print(getCapsLockRatio(chat))
-    print(getUserSentiment(chat))
-    print(userKeyWords(chat))
-    print(getConversationSentiment(chat))
+    numberOfMessages = getNumberOfMessages(chat)                 # 
+    numberOfResponses = getNumberOfResponses(chat)               #
+    averageResponseTimes = getAverageResponseTimes(chat)         #
+    conversationsStarted = getNumberOfConversationsStarted(chat) #
+    numberOfWords = getNumberOfWords(chat)                       #    
+    words = getWords(chat)                                       #
+    capsLockRatio = getCapsLockRatio(chat)                       #
+    userSentiment = getUserSentiment(chat)                       #
+    userKeywords = userKeyWords(chat)                            #
+    conversationSentiment = getConversationSentiment(chat)       # returns an integer
+    result = [numberOfMessages, numberOfResponses, averageResponseTimes, conversationsStarted, numberOfWords, words,
+    capsLockRatio, userSentiment, userKeywords, conversationSentiment]
+    return result
 
 # -------------------------------------- Helper Methods --------------------------------------
 
@@ -195,7 +195,7 @@ def getNumberOfWords(chat):
 
 def getWords(chat):
     '''
-    Returns a mapping of users to the number of words they sent
+    Returns a mapping of users to the words they sent
     '''
     words = dict()
     for index in chat.index:
@@ -224,7 +224,7 @@ def isCapsLock(word):
 
 def getConversationSentiment(chat):
     '''
-    Function to return sentiment score between -1 to 1 for each person.
+    Function to return sentiment score between -1 to 1 for total sentiment
     '''
     totalWords = []
     words = getWords(chat)
