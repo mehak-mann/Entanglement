@@ -25,6 +25,14 @@ def analysis():
 def info():
     return render_template('info.html')
 
+@app.route('/charts')
+def charts():
+    return render_template('charts.html')
+
+@app.route('/chartsm')
+def chartsm():
+    return render_template('charts-matt.html')
+
 @app.route('/get_data', methods=['POST'])
 def get_data():
     dataFile = request.files['file_path']
@@ -37,6 +45,10 @@ def get_data():
     if "json" in dataFileName:
         fileType = "json"
 
+    if "matt" in dataFileName:
+        which_url = "/chartsm"
+    else:
+        which_url ="/charts"
     filePath = 'scripts/' + dataFileName
     result = main(os.path.join(app.instance_path, filePath), fileType)
 
@@ -79,7 +91,8 @@ def get_data():
                                             #cLR=capsLockRatio, cLRKeys=list(capsLockRatio.keys()),
                                             uS=userSentiment, uSKeys=list(userSentiment.keys()),
                                             uK=userKeywords, uKKeys=list(userKeywords.keys()), 
-                                            cSe=conversationSentiment, sentiment=sentiment, overallSent=overallSent
+                                            cSe=conversationSentiment, sentiment=sentiment, overallSent=overallSent,
+                                            which_url=which_url
                             )
 
 if __name__ == "__main__":
