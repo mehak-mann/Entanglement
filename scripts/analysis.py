@@ -19,7 +19,7 @@ import seaborn as sns
 
 
 def main():
-    filename = 'chat1.json'
+    filename = 'bitchy_conversation.json'
     filetype = 'json'
     # filename = 'mattchatlog.csv'
     # filetype = 'csv'
@@ -51,12 +51,11 @@ def fetchStatistics(chat):
     averageResponseTimes = getAverageResponseTimes(chat)         #
     conversationsStarted = getNumberOfConversationsStarted(chat) #
     numberOfWords = getNumberOfWords(chat)                       #    
-    words = getWords(chat)                                       #
     capsLockRatio = getCapsLockRatio(chat)                       #
     userSentiment = getUserSentiment(chat)                       #
     userKeywords = userKeyWords(chat)                            #
     conversationSentiment = getConversationSentiment(chat)       # returns an integer
-    result = [numberOfMessages, numberOfResponses, averageResponseTimes, conversationsStarted, numberOfWords, words,
+    result = [numberOfMessages, numberOfResponses, averageResponseTimes, conversationsStarted, numberOfWords,
     capsLockRatio, userSentiment, userKeywords, conversationSentiment]
     return result
 
@@ -69,11 +68,11 @@ def run(filename, filetype):
     # converts data into pd dataframe
     chatlog = getChat(filename, filetype)
 
-    # fetch statistics
-    fetchStatistics(chatlog)
-
     # create all visualizations
     createPlots(chatlog)
+
+    # fetch statistics
+    return fetchStatistics(chatlog)
 
 
 def getChat(filename, filetype):
@@ -349,9 +348,6 @@ def plotSentimentOverTime(chat):
   
 
 # -------------------------------- Converts chatlog to program-readable format --------------------------------------
-
-
-
 
 def spawnDF(filename):
     '''
