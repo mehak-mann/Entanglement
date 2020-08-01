@@ -30,7 +30,7 @@
 
 Visit `localhost:5000` on your browser
 
-## Demo Link
+## Demo Link (Demo Video is also in repo)
 
 https://youtu.be/CyTxb-6txKI
 
