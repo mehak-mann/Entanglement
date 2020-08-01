@@ -18,6 +18,14 @@
 
 ## Developer Setup
 
+`cd Entanglement`
+
+`./activateApp.sh`
+
+## control-c to deactivate
+
+## OR
+
 `cd client`
 
 `python3 -m venv env`
@@ -27,6 +35,8 @@
 `pip3 install -r requirements.txt`
 
 `python app.py`
+
+## control-c to deactivate local host and `deacivate` to stop environment
 
 Visit `localhost:5000` on your browser
 
