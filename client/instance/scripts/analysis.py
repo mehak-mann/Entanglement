@@ -12,10 +12,9 @@ nlp.max_length = 10000000
 from textblob import TextBlob
 import datetime
 from datetime import timedelta
-import matplotlib.pyplot as plt
-import matplotlib
-matplotlib.use('MacOSX')
-import seaborn as sns
+# import matplotlib.pyplot as plt
+# import matplotlib
+# import seaborn as sns
 import json
 
 
@@ -271,71 +270,71 @@ def userKeyWords(chat):
 
 # -------------------------------- Visualizations --------------------------------
 
-def plotMessages(messages):
-    names = list(messages.keys())
-    number = list(messages.values())
-    df = pd.DataFrame(list(zip(names, number)), columns=['Person', 'Number of Messages'])
-    sns.set(style="whitegrid")
-    sns.barplot(x="Person", y="Number of Messages", data=df).set_title("Number of Messages per Person")
-    plt.savefig("Visualizations/Number of Messages per person.jpeg")
+# def plotMessages(messages):
+#     names = list(messages.keys())
+#     number = list(messages.values())
+#     df = pd.DataFrame(list(zip(names, number)), columns=['Person', 'Number of Messages'])
+#     sns.set(style="whitegrid")
+#     sns.barplot(x="Person", y="Number of Messages", data=df).set_title("Number of Messages per Person")
+#     plt.savefig("Visualizations/Number of Messages per person.jpeg")
 
-def plotConvosStarted(convoStarted):
-    names = list(convoStarted.keys())
-    number = list(convoStarted.values())
-    df = pd.DataFrame(list(zip(names, number)), columns=['Person', 'Number of Conversations Started'])
-    sns.set(style="whitegrid")
-    sns.barplot(x="Person", y="Number of Conversations Started", data=df).set_title("Number of Conversations Started per Person")
-    plt.savefig("Visualizations/Conversations Started per Person.jpeg")
+# def plotConvosStarted(convoStarted):
+#     names = list(convoStarted.keys())
+#     number = list(convoStarted.values())
+#     df = pd.DataFrame(list(zip(names, number)), columns=['Person', 'Number of Conversations Started'])
+#     sns.set(style="whitegrid")
+#     sns.barplot(x="Person", y="Number of Conversations Started", data=df).set_title("Number of Conversations Started per Person")
+#     plt.savefig("Visualizations/Conversations Started per Person.jpeg")
 
-def plotResponseTimeOverTime(chat):
-    '''
-    Message words over time
-    '''
-    changed_chat = getResponseTimes(chat)
-    changed_chat['time'] = changed_chat['time'].dt.seconds
-    users = chat.user.unique()
-    sns.set(style="whitegrid")
-    for user in users:
-       user_chat = changed_chat[changed_chat['user'] == user]
-       plt.plot(user_chat['time'], label=user)
-    plt.legend(loc='lower left')
-    plt.xlabel("Time")
-    plt.ylabel("Response Time (s)")
-    plt.title("Response Times per Person (over Time)")
-    plt.savefig("Visualizations/Response Times per Person (over Time).jpeg")
+# def plotResponseTimeOverTime(chat):
+#     '''
+#     Message words over time
+#     '''
+#     changed_chat = getResponseTimes(chat)
+#     changed_chat['time'] = changed_chat['time'].dt.seconds
+#     users = chat.user.unique()
+#     sns.set(style="whitegrid")
+#     for user in users:
+#        user_chat = changed_chat[changed_chat['user'] == user]
+#        plt.plot(user_chat['time'], label=user)
+#     plt.legend(loc='lower left')
+#     plt.xlabel("Time")
+#     plt.ylabel("Response Time (s)")
+#     plt.title("Response Times per Person (over Time)")
+#     plt.savefig("Visualizations/Response Times per Person (over Time).jpeg")
 
-def plotWordsOverTime(chat):
-    '''
-    Message words over time
-    '''
-    changed_chat = chat[:]
-    changed_chat['message'] = changed_chat['message'].apply(lambda x: len(x.split()))
-    users = chat.user.unique()
-    sns.set(style="whitegrid")
-    for user in users:
-       user_chat = changed_chat[changed_chat['user'] == user]
-       plt.plot(user_chat['message'], label=user)
-    plt.legend(loc='lower left')
-    plt.xlabel("Time")
-    plt.ylabel("Words per Message")
-    plt.title("Words per Message Over Time")
-    plt.savefig("Visualizations/Words per Message Over Time.jpeg")
+# def plotWordsOverTime(chat):
+#     '''
+#     Message words over time
+#     '''
+#     changed_chat = chat[:]
+#     changed_chat['message'] = changed_chat['message'].apply(lambda x: len(x.split()))
+#     users = chat.user.unique()
+#     sns.set(style="whitegrid")
+#     for user in users:
+#        user_chat = changed_chat[changed_chat['user'] == user]
+#        plt.plot(user_chat['message'], label=user)
+#     plt.legend(loc='lower left')
+#     plt.xlabel("Time")
+#     plt.ylabel("Words per Message")
+#     plt.title("Words per Message Over Time")
+#     plt.savefig("Visualizations/Words per Message Over Time.jpeg")
 
-def plotSentimentOverTime(chat):
-    '''
-    Sentiment over time
-    '''
-    changed_chat = getMessageSentiment(chat)
-    users = chat.user.unique()
-    sns.set(style="whitegrid")
-    for user in users:
-       user_chat = changed_chat[changed_chat['user'] == user]
-       plt.plot(user_chat['sentiment'], label=user)
-    plt.legend(loc='lower left')
-    plt.xlabel("Time")
-    plt.ylabel("Sentiment Score (Scale -1 to 1)")
-    plt.title("Sentiment per Person over Time")
-    plt.savefig("Visualizations/Sentiment per Person over Time.jpeg")
+# def plotSentimentOverTime(chat):
+#     '''
+#     Sentiment over time
+#     '''
+#     changed_chat = getMessageSentiment(chat)
+#     users = chat.user.unique()
+#     sns.set(style="whitegrid")
+#     for user in users:
+#        user_chat = changed_chat[changed_chat['user'] == user]
+#        plt.plot(user_chat['sentiment'], label=user)
+#     plt.legend(loc='lower left')
+#     plt.xlabel("Time")
+#     plt.ylabel("Sentiment Score (Scale -1 to 1)")
+#     plt.title("Sentiment per Person over Time")
+#     plt.savefig("Visualizations/Sentiment per Person over Time.jpeg")
 
 # -------------------------------- Converts chatlog to program-readable format --------------------------------
 
