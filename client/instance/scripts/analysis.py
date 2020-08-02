@@ -16,67 +16,24 @@ import matplotlib.pyplot as plt
 import matplotlib
 matplotlib.use('MacOSX')
 import seaborn as sns
+import json
 
 
 def main(filename, filetype):
-    # filename = 'mattchatlog.csv'
-    # filetype = 'csv'
-    return run(filename, filetype)
-    
-def createPlots(chat):
-    #chat = getChat()
-     # ---- plots messages per person bar graph (words) -----
-    messages = getNumberOfMessages(chat)
-    plotMessages(messages)
-    plt.close()
-    # ## ----- 
-    convosStarted = getNumberOfConversationsStarted(chat)
-    plotConvosStarted(convosStarted)
-    plt.close()
-    # # # # ----
-    plotWordsOverTime(chat)
-    plt.close()
-    # # # ---- plots messages per person bar graph (words) -----
-    plotResponseTimeOverTime(chat)
-    plt.close()
-    # Sentiment Plots
-    plotSentimentOverTime(chat)
-    plt.close()
+    #return run(filename, filetype)
 
-def fetchStatistics(chat):
-    numberOfMessages = getNumberOfMessages(chat)                 # 
-    numberOfResponses = getNumberOfResponses(chat)               #
-    averageResponseTimes = getAverageResponseTimes(chat)         #
-    conversationsStarted = getNumberOfConversationsStarted(chat) #
-    numberOfWords = getNumberOfWords(chat)                       #    
-    capsLockRatio = getCapsLockRatio(chat)                       #
-    userSentiment = getUserSentiment(chat)                       #
-    userKeywords = userKeyWords(chat)                            #
-    conversationSentiment = getConversationSentiment(chat)       # returns an integer
-    result = [numberOfMessages, numberOfResponses, averageResponseTimes, conversationsStarted, numberOfWords,
-    capsLockRatio, userSentiment, userKeywords, conversationSentiment]
-    return result
-
-# -------------------------------------- Helper Methods --------------------------------------
-
-def run(filename, filetype):
-    '''
-    runs everything
-    '''
-    # converts data into pd dataframe
+     # converts data into pd dataframe
     chatlog = getChat(filename, filetype)
 
     # create all visualizations
-    # createPlots(chatlog)
+    # createPlots(chatlog)    # doesn't work with UI yet
 
     # fetch statistics
     return fetchStatistics(chatlog)
 
-
 def getChat(filename, filetype):
     '''
     Takes a filename and a type, where type is either 'json' or 'csv'
-    json: 'chat1.json', csv: 'mattchatlog.csv'
     '''
     # fetches data and converts to pd dataframe
 
@@ -86,6 +43,47 @@ def getChat(filename, filetype):
         chat = pd.read_csv(filename)
         chat['time'] = pd.to_datetime(chat['time'], infer_datetime_format=True)
         return chat
+
+def createPlots(chat):
+    '''
+    Fetches visualizations of data.
+    '''
+    # plots messages per person over time (bar graph)
+    messages = getNumberOfMessages(chat)
+    plotMessages(messages)
+    plt.close()
+    # plots conversations started per person over time (bar graph)
+    convosStarted = getNumberOfConversationsStarted(chat)
+    plotConvosStarted(convosStarted)
+    plt.close()
+    # plots words sent per person over time (line graph)
+    plotWordsOverTime(chat)
+    plt.close()
+    # plots response time per person over time (line graph)
+    plotResponseTimeOverTime(chat)
+    plt.close()
+    # plots sentiment per person over time (line graph)
+    plotSentimentOverTime(chat)
+    plt.close()
+
+def fetchStatistics(chat):
+    '''
+    Fetches statistics for data.
+    '''
+    numberOfMessages = getNumberOfMessages(chat)     # dict of total number of messages per person
+    numberOfResponses = getNumberOfResponses(chat)      # dict of total number of response-messages per person
+    averageResponseTimes = getAverageResponseTimes(chat)      # dict of average response times per person
+    conversationsStarted = getNumberOfConversationsStarted(chat)     # dict of total number of conversations started per person (12 hr gap)
+    numberOfWords = getNumberOfWords(chat)     # dict of total number words sent per person
+    capsLockRatio = getCapsLockRatio(chat)     # dict of capslock ratio per person
+    userSentiment = getUserSentiment(chat)     # dict of sentiment per person
+    userKeywords = userKeyWords(chat)          # dict of most popular words/phrases per person
+    conversationSentiment = getConversationSentiment(chat)     # integer holistic conversation sentiment
+    result = [numberOfMessages, numberOfResponses, averageResponseTimes, conversationsStarted, numberOfWords,
+    capsLockRatio, userSentiment, userKeywords, conversationSentiment]
+    return result
+
+# -------------------------------- Statistics --------------------------------
 
 def getNumberOfMessages(chat):
     '''
@@ -126,19 +124,13 @@ def getTotalResponseTimes(chat):
         if user not in totalResponseTimes.keys():
             totalResponseTimes[user] = pd.to_timedelta('00:00:00.00')
         if user is not prevUser and prevUser is not None:
-            #print(chat['time'][index])
-            #print(chat['time'][index-1])
-            #print(chat['time'][index] - chat['time'][index-1])
             totalResponseTimes[user] += chat['time'][index] - chat['time'][index-1]
-            #print(totalResponseTimes[user])
         prevUser = user
-    #print(totalResponseTimes)
     return totalResponseTimes
 
 def getAverageResponseTimes(chat):
     '''
     Returns a mapping of users to their average reponse times to all other users
-    *Includes responses to self
     '''
     responseTimes = dict()
     changed_chat = chat[:]
@@ -148,7 +140,6 @@ def getAverageResponseTimes(chat):
     users = chat.user.unique()
     for user in users:
         user_chat = changed_chat[changed_chat['user'] == user]  # filters to only show messages sent by user
-        #print(getTotalResponseTimes(chat)[user])
         responseTimes[user] = totalResponseTimes[user] / numResponses[user]  # sums all response times and divides by total messages sent by user
     return responseTimes
 
@@ -163,8 +154,8 @@ def getResponseTimes(chat):
 
 def getNumberOfConversationsStarted(chat):
     '''
-    #Returns a mapping of users to the number of conversations they've started,
-    #assuming a 12-hour gap signifies the start of a new conversation
+    Returns a mapping of users to the number of conversations they've started,
+    assuming a 12-hour gap signifies the start of a new conversation
     '''
     new_chat = chat[:]
     conversationsStarted = dict()
@@ -207,6 +198,9 @@ def getWords(chat):
     return words
 
 def getCapsLockRatio(chat):
+    '''
+    Returns a mapping of users to their caps lock ratios
+    '''
     capsRatio = dict()
     allWords = getWords(chat)
     for user in allWords.keys():
@@ -275,11 +269,8 @@ def userKeyWords(chat):
     except:
         return "no content"
 
+# -------------------------------- Visualizations --------------------------------
 
-# -------------------------------- Visualization methods --------------------------------------
-
-# eventually, try to refactor to show number of messages
-# per day over the last week
 def plotMessages(messages):
     names = list(messages.keys())
     number = list(messages.values())
@@ -294,7 +285,6 @@ def plotConvosStarted(convoStarted):
     df = pd.DataFrame(list(zip(names, number)), columns=['Person', 'Number of Conversations Started'])
     sns.set(style="whitegrid")
     sns.barplot(x="Person", y="Number of Conversations Started", data=df).set_title("Number of Conversations Started per Person")
-    # plt.savefig("Number of Conversation Started per Person.jpeg")
     plt.savefig("Visualizations/Conversations Started per Person.jpeg")
 
 def plotResponseTimeOverTime(chat):
@@ -346,87 +336,30 @@ def plotSentimentOverTime(chat):
     plt.ylabel("Sentiment Score (Scale -1 to 1)")
     plt.title("Sentiment per Person over Time")
     plt.savefig("Visualizations/Sentiment per Person over Time.jpeg")
-  
 
-# -------------------------------- Converts chatlog to program-readable format --------------------------------------
+# -------------------------------- Converts chatlog to program-readable format --------------------------------
+
+def fix_text_encoding(text):
+    '''
+    Fixes text encoding, see https://stackoverflow.com/questions/50008296/facebook-json-badly-encoded
+    '''
+    return text.encode('latin1').decode('utf8')
 
 def spawnDF(filename):
-    '''
-    Given a .json file of a facebook messenger chatlog this function will return a pandas 
-    dataframe with 3 columns, user, datetime, message 
-    '''
-    sender_name = []
-    timestamp_ms = []
-    contents = []
-    mtype = []
-    with open(filename, "r") as a_file:
-
-        for line in a_file:
-
-            stripped_line = line.strip()
-            name = stripped_line.split("sender_name")
-            if(stripped_line.find('sender_name') > -1):
-                i = stripped_line.split('sender_name')
-                #hard code for now i is an array of size 2, with the sender_name in i[1]
-                name = i[1].split(": ")
-                #name splits into array of size 2, 
-                #name[1] = "NAME", So we use [1:-2]
-                user = name[1][1:-2]
-                sender_name.append(user)
-                #print(name[1][1:-2]) 
-                
-            if(stripped_line.find('timestamp_ms') > -1):
-                i = stripped_line.split('timestamp_ms')
-                stamp = i[1].split(": ")
-                #stamp[1] returns the ms + a comma
-                ts = stamp[1][:-1]
-                timestamp_ms.append(ts)
-                #print(stamp[1][:-1])
-                
-            if(stripped_line.find('content') > -1):
-                i = stripped_line.split('content')
-                content = i[1].split(": ")
-                c = content[1][:-1]
-                contents.append(c)
-                #print(c)
-                #print(contents)
-            
-            if(stripped_line.find('type') > -1):
-                mtype.append("generic")
-                #print(stripped_line)
-            
-            if(stripped_line.find('\"sticker\"') > -1):
-                sticker = "sticker"
-                contents.append(sticker)
-                #print(stripped_line)    
-
-            if(stripped_line.find('\"photos\"') > -1):
-                contents.append('photos')
-                #print(stripped_line)            
-                
-            #print(stripped_line)
-
-    df = pd.DataFrame({'user': sender_name,
-                    'time': timestamp_ms,
-                    'message': contents})
-    df = df[df['message'] != 'sticker']
-    df = df[df['message'] != 'photos']
-    for index, row in df.iterrows():
-        row['time'] = int(row['time'])
-        row['time'] = datetime.datetime.fromtimestamp(row['time']/1000)
-        tm = row['time']
-        row['time'] = row['time'] - datetime.timedelta(microseconds=tm.microsecond)
+    data = []
+    with open(filename, encoding="utf8") as f:
+        json_data = json.load(f)
+    for message in json_data["messages"]:
+        timestamp = datetime.datetime.fromtimestamp(int(message['timestamp_ms']/1000))
+        tm = timestamp
+        timestamp -= datetime.timedelta(microseconds=tm.microsecond)
+        if "content" in message and "sender_name" in message:
+            content = fix_text_encoding(message["content"])
+        if "sender_name" in message:
+            sender_name = fix_text_encoding(message["sender_name"])
+        data += [[sender_name, timestamp, content]]
+    df = pd.DataFrame(data, columns=['user', 'time', 'message'])
     df = df.iloc[::-1]    
     df.index = range(len(df.index))
-    #df = df.iloc[::-1]
+    print(df)
     return df
-
-# -------------------------------------- Main Analyzer Methods --------------------------------------
-
-# Create a function/equation that gives scores 0-100
-    # think about how to give weight to all of the metrics
-
-# if __name__ == '__main__':
- #   main()
-
-# --------------------------------------- Helper methods -----------------------------------

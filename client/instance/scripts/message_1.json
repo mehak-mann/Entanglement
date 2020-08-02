@@ -1,0 +1,276 @@
+{
+  "participants": [
+    {
+      "name": "Aiza Ali"
+    },
+    {
+      "name": "Mehak Mann"
+    }
+  ],
+  "messages": [
+    {
+      "sender_name": "Mehak Mann",
+      "timestamp_ms": 1586381472315,
+      "content": "Oh lol",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Mehak Mann",
+      "timestamp_ms": 1586381469752,
+      "content": "Which class",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Aiza Ali",
+      "timestamp_ms": 1586381469070,
+      "content": "This is 143",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Aiza Ali",
+      "timestamp_ms": 1586381465931,
+      "content": "And I did that method and it worked \u00f0\u009f\u0098\u00ad\u00f0\u009f\u0098\u0082",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Aiza Ali",
+      "timestamp_ms": 1586381459450,
+      "content": "I did the next part of the assignment which was writing some method",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Mehak Mann",
+      "timestamp_ms": 1586381450386,
+      "content": "Which class??",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Mehak Mann",
+      "timestamp_ms": 1586381446106,
+      "content": "Oh ok",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Aiza Ali",
+      "timestamp_ms": 1586381444461,
+      "content": "What even is this class",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Mehak Mann",
+      "timestamp_ms": 1586381444371,
+      "content": "U might not want to make it static if this is an object class",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Aiza Ali",
+      "timestamp_ms": 1586381440519,
+      "content": "Never mjnd",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Mehak Mann",
+      "timestamp_ms": 1586381433627,
+      "content": "Hmm the screen is cut off can you send a bigger picture?",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Aiza Ali",
+      "timestamp_ms": 1586381265241,
+      "content": "Why is this return type wrong \u00f0\u009f\u0098\u00ae",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Aiza Ali",
+      "timestamp_ms": 1586381256264,
+      "photos": [
+        {
+          "uri": "messages/inbox/AizaAli_-yovCLllLQ/photos/92506920_171032264014864_7918291780959731712_n_171032260681531.jpg",
+          "creation_timestamp": 1586381255
+        }
+      ],
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Aiza Ali",
+      "timestamp_ms": 1585970769359,
+      "content": "It\u00e2\u0080\u0099s all good",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Mehak Mann",
+      "timestamp_ms": 1585965945830,
+      "content": "Omg whoops haha just saw this - also haha ur good",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Aiza Ali",
+      "timestamp_ms": 1585953809179,
+      "content": "I forgot we could use the add method \u00f0\u009f\u0098\u0082\u00f0\u009f\u0098\u00ad",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Aiza Ali",
+      "timestamp_ms": 1585953801136,
+      "content": "Wait never mind I\u00e2\u0080\u0099m dumb lol",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Aiza Ali",
+      "timestamp_ms": 1585953047140,
+      "photos": [
+        {
+          "uri": "messages/inbox/AizaAli_-yovCLllLQ/photos/92360089_2959134274152951_3120806551049207808_n_2959134270819618.jpg",
+          "creation_timestamp": 1585953046
+        }
+      ],
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Aiza Ali",
+      "timestamp_ms": 1585952979599,
+      "photos": [
+        {
+          "uri": "messages/inbox/AizaAli_-yovCLllLQ/photos/92280317_2987179004658994_5515818218108747776_n_2987179001325661.jpg",
+          "creation_timestamp": 1585952978
+        }
+      ],
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Aiza Ali",
+      "timestamp_ms": 1585952948640,
+      "photos": [
+        {
+          "uri": "messages/inbox/AizaAli_-yovCLllLQ/photos/91902642_515236976096802_665124622642970624_n_515236972763469.jpg",
+          "creation_timestamp": 1585952947
+        }
+      ],
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Aiza Ali",
+      "timestamp_ms": 1585952927147,
+      "content": "Sorry this is random but at this point I am doing random bs to get 8/8 test cases right lol",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Aiza Ali",
+      "timestamp_ms": 1585952910838,
+      "content": "Hey Mehak",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Aiza Ali",
+      "timestamp_ms": 1584643935158,
+      "content": "And put Vick\u00e2\u0080\u0099s on your forehead to ease tension lol",
+      "reactions": [
+        {
+          "reaction": "\u00f0\u009f\u0091\u008d",
+          "actor": "Mehak Mann"
+        }
+      ],
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Aiza Ali",
+      "timestamp_ms": 1584643920263,
+      "content": "Oof go to sleep",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Mehak Mann",
+      "timestamp_ms": 1584643862007,
+      "content": "Afehekrktj",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Mehak Mann",
+      "timestamp_ms": 1584643849735,
+      "content": "I have slept two hours I want to sleep again",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Mehak Mann",
+      "timestamp_ms": 1584643843146,
+      "content": "Also I slept at 7:40 am after pulling an all nighter for my essay kms",
+      "reactions": [
+        {
+          "reaction": "\u00f0\u009f\u0098\u00a2",
+          "actor": "Aiza Ali"
+        }
+      ],
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Mehak Mann",
+      "timestamp_ms": 1584643821455,
+      "content": "Idkkkk",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Aiza Ali",
+      "timestamp_ms": 1584643817963,
+      "content": "Me neither I\u00e2\u0080\u0099m home lol",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Aiza Ali",
+      "timestamp_ms": 1584643812964,
+      "content": "Yeah Bc were all online",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Mehak Mann",
+      "timestamp_ms": 1584643807496,
+      "content": "I\u00e2\u0080\u0099m not even at UW",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Mehak Mann",
+      "timestamp_ms": 1584643801226,
+      "content": "No clue",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Aiza Ali",
+      "timestamp_ms": 1584643790823,
+      "content": "Do you know if the IPL is just cancelled lol",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Aiza Ali",
+      "timestamp_ms": 1584165404499,
+      "content": "Idk man",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Mehak Mann",
+      "timestamp_ms": 1584164694625,
+      "content": "I'm sure they'll come up with a plan - like have you pay less while you're doing things remotely",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Mehak Mann",
+      "timestamp_ms": 1584164681918,
+      "content": "shooot",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Aiza Ali",
+      "timestamp_ms": 1584164658045,
+      "content": "All my stuff is still in the dorm and if we\u00e2\u0080\u0099re going online and WA is a total mess then I\u00e2\u0080\u0099m going to get charged $4300 for housing and dining I\u00e2\u0080\u0099m not going to use",
+      "type": "Generic"
+    },
+    {
+      "sender_name": "Aiza Ali",
+      "timestamp_ms": 1584164620683,
+      "content": "Dude I don\u00e2\u0080\u0099t even know what to do",
+      "type": "Generic"
+    }
+  ],
+  "title": "Aiza Ali",
+  "is_still_participant": true,
+  "thread_type": "Regular",
+  "thread_path": "inbox/AizaAli_-yovCLllLQ"
+}
