@@ -1,4 +1,4 @@
-# ENTANGLEMENT
+# Entanglement
 
 ## *"The Ultimate Chat Sentiment Analyser"*
 
