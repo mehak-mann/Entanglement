@@ -2,7 +2,11 @@
 
 ## *"The Ultimate Chat Sentiment Analyser"*
 
-| Step 1: Upload your CSV chat logs onto the website
+| Step 0: Download your Facebook messages
+
+<img src=./client/static/FB.png />
+
+| Step 1: Upload your JSON chat log onto the website
 
 <img src=./client/static/HOME.png />
 
